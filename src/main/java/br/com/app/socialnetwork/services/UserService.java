@@ -1,5 +1,6 @@
 package br.com.app.socialnetwork.services;
 
+import br.com.app.socialnetwork.dto.UserDTO;
 import br.com.app.socialnetwork.entities.User;
 import br.com.app.socialnetwork.repositories.UserRepository;
 import br.com.app.socialnetwork.services.exception.ResourceNotFoundException;
@@ -21,5 +22,13 @@ public class UserService {
     public User findById(String id) {
         return userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public User insert(User user) {
+        return userRepository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO) {
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 }
