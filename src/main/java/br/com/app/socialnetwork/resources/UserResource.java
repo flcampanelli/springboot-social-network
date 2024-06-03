@@ -41,4 +41,10 @@ public class UserResource {
                 .buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).build(); // http status code 201 Created
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build(); // http status code 204 No Content
+    }
 }
