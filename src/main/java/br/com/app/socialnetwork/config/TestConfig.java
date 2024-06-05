@@ -1,5 +1,6 @@
 package br.com.app.socialnetwork.config;
 
+import br.com.app.socialnetwork.dto.AuthorDTO;
 import br.com.app.socialnetwork.entities.Post;
 import br.com.app.socialnetwork.entities.User;
 import br.com.app.socialnetwork.repositories.PostRepository;
@@ -32,11 +33,22 @@ public class TestConfig implements CommandLineRunner {
         User endrickUser = new User(null, "Endrick", "endrick@gmail.com");
         User estevaoUser = new User(null, "Estevão", "estevao@gmail.com");
         User luisUser = new User(null, "Luis Guilherme", "luis@gmail.com");
-
-        Post endrickFirstPost = new Post(null, dateFormat.parse("30/05/2024"), "Partiu viagem", "Vamos meu palmeiras, acompanhando vocês de onde eu estiver!", endrickUser);
-        Post endrickSecondPost = new Post(null, dateFormat.parse("01/06/2024"), "Você é fera Vini Jr.", "Gols importantes!", endrickUser);
-
         userRepository.saveAll(Arrays.asList(endrickUser, estevaoUser, luisUser));
+
+        Post endrickFirstPost = new Post(
+            null,
+            dateFormat.parse("30/05/2024"),
+            "Partiu viagem",
+            "Vamos meu palmeiras, acompanhando vocês de onde eu estiver!",
+            new AuthorDTO(endrickUser)
+        );
+        Post endrickSecondPost = new Post(
+            null,
+            dateFormat.parse("01/06/2024"),
+            "Você é fera Vini Jr.",
+            "Gols importantes!",
+            new AuthorDTO(endrickUser)
+        );
         postRepository.saveAll(Arrays.asList(endrickFirstPost, endrickSecondPost));
     }
 }
