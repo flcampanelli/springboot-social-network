@@ -1,6 +1,7 @@
 package br.com.app.socialnetwork.resources;
 
 import br.com.app.socialnetwork.dto.UserDTO;
+import br.com.app.socialnetwork.entities.Post;
 import br.com.app.socialnetwork.entities.User;
 import br.com.app.socialnetwork.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,11 @@ public class UserResource {
         user.setId(id);
         userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
