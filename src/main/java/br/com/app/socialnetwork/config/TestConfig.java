@@ -50,5 +50,8 @@ public class TestConfig implements CommandLineRunner {
             new AuthorDTO(endrickUser)
         );
         postRepository.saveAll(Arrays.asList(endrickFirstPost, endrickSecondPost));
+
+        endrickUser.getPosts().addAll(Arrays.asList(endrickFirstPost, endrickSecondPost));
+        userRepository.save(endrickUser);
     }
 }
