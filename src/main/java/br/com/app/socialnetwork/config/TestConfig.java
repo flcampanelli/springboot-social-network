@@ -1,6 +1,7 @@
 package br.com.app.socialnetwork.config;
 
 import br.com.app.socialnetwork.dto.AuthorDTO;
+import br.com.app.socialnetwork.dto.CommentDTO;
 import br.com.app.socialnetwork.entities.Post;
 import br.com.app.socialnetwork.entities.User;
 import br.com.app.socialnetwork.repositories.PostRepository;
@@ -49,6 +50,14 @@ public class TestConfig implements CommandLineRunner {
             "Gols importantes!",
             new AuthorDTO(endrickUser)
         );
+
+        CommentDTO firstComment = new CommentDTO("Boa viagem!", dateFormat.parse("01/06/2024"), new AuthorDTO(estevaoUser));
+        CommentDTO secondComment = new CommentDTO("Aproveite!", dateFormat.parse("02/06/2024"), new AuthorDTO(luisUser));
+        CommentDTO thirdComment = new CommentDTO("O melhor atualmente!", dateFormat.parse("02/06/2024"), new AuthorDTO(estevaoUser));
+
+        endrickFirstPost.getComments().addAll(Arrays.asList(firstComment, secondComment));
+        endrickSecondPost.getComments().add(thirdComment);
+
         postRepository.saveAll(Arrays.asList(endrickFirstPost, endrickSecondPost));
 
         endrickUser.getPosts().addAll(Arrays.asList(endrickFirstPost, endrickSecondPost));
