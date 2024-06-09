@@ -45,7 +45,7 @@ public class TestConfig implements CommandLineRunner {
         );
         Post endrickSecondPost = new Post(
             null,
-            dateFormat.parse("01/06/2024"),
+            dateFormat.parse("02/06/2024"),
             "Você é fera Vini Jr.",
             "Gols importantes!",
             new AuthorDTO(endrickUser)
