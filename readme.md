@@ -291,3 +291,43 @@ Perform a full search for posts based on text, and optional date range.
     }
 ]
 ```
+
+## Error Handling
+
+All endpoints can return error responses in case of issues. Here are some common error codes and their meanings:
+
+- **400 Bad Request**: The request was invalid or cannot be served. The exact error should be explained in the error payload.
+
+```json
+{
+    "timestamp": 1718755877742,
+    "status": 400,
+    "error": "Bad Request",
+    "message": "The request could not be understood by the server due to malformed syntax.",
+    "path": "/{endpoint}"
+}
+```
+
+- **404 Not Found**: The requested resource could not be found. This could mean the resource does not exist.
+
+```json
+{
+    "timestamp": 1718755877742,
+    "status": 404,
+    "error": "Resource not found",
+    "message": "Resource not found. Id {id}",
+    "path": "/{endpoint}/{id}"
+}
+```
+
+- **500 Internal Server Error**: The server encountered an unexpected condition that prevented it from fulfilling the request.
+
+```json
+{
+    "timestamp": 1718755877742,
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "An unexpected error occurred on the server.",
+    "path": "/{endpoint}"
+}
+```
