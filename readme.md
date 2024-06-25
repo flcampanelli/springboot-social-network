@@ -1,6 +1,6 @@
 # Social Network API Documentation
 
-Welcome to the documentation for the Social Network API. This API provides endpoints to interact with users their posts in an social network application.
+Welcome to the documentation for the Social Network API. This API provides endpoints to interact with users their posts in a social network application.
 
 ## Base URL
 
@@ -28,15 +28,14 @@ Retrieve a list of all users.
 [
     {
         "id": "667217f95617941eef6735ed",
-		"name": "João",
-		"email": "joao@gmail.com"
+        "name": "João",
+        "email": "joao@gmail.com"
     },
     {
         "id": "667217f95617941eef6735ee",
-		"name": "Maria",
-		"email": "maria@gmail.com"
-    },
-    ...
+        "name": "Maria",
+        "email": "maria@gmail.com"
+    }
 ]
 ```
 
@@ -150,25 +149,145 @@ Retrieve all posts by a specific user.
 ```json
 [
     {
-		"id": "667836a197850b6ecbe6a6a7",
-		"date": "2024-06-02T00:00:00.000+00:00",
-		"title": "Sample Post Title",
-		"body": "Sample post body text.",
-		"author": {
-			"id": "667217f95617941eef6735ed",
-			"name": "João"
-		},
-		"comments": [
-			{
-				"text": "Sample comment.",
-				"date": "2024-06-03T00:00:00.000+00:00",
-				"author": {
-					"id": "667217f95617941eef6735ee",
-					"name": "Maria"
-				}
-			}
-		]
-	},
-    ...
+        "id": "667836a197850b6ecbe6a6a7",
+        "date": "2024-06-02T00:00:00.000+00:00",
+        "title": "Sample Post Title",
+        "body": "Sample post body text.",
+        "author": {
+            "id": "667217f95617941eef6735ed",
+            "name": "João"
+        },
+        "comments": [
+            {
+                "text": "Sample comment.",
+                "date": "2024-06-03T00:00:00.000+00:00",
+                "author": {
+                    "id": "667217f95617941eef6735ee",
+                    "name": "Maria"
+                }
+            }
+        ]
+    }
+]
+```
+
+## Posts
+
+### Retrieve a Post by ID
+
+```
+GET /posts/{id}
+```
+
+Retrieve details of a specific post by its ID.
+
+#### Parameters
+
+- `id` (string): ID of the post to retrieve.
+
+#### Response
+
+- **HTTP Status Code**: 200 OK
+
+```json
+{
+    "id": "667836a197850b6ecbe6a6a7",
+    "date": "2024-06-02T00:00:00.000+00:00",
+    "title": "Sample Post Title",
+    "body": "Sample post body text.",
+    "author": {
+        "id": "667217f95617941eef6735ed",
+        "name": "João"
+    },
+    "comments": [
+        {
+            "text": "Sample comment.",
+            "date": "2024-06-03T00:00:00.000+00:00",
+            "author": {
+                "id": "667217f95617941eef6735ee",
+                "name": "Maria"
+            }
+        }
+    ]
+}
+```
+
+### Search Posts by Title
+
+Search for posts by their title.
+
+#### Parameters
+
+- `text` (string): Text to search in the post titles.
+
+#### Response
+
+- **HTTP Status Code**: 200 OK
+
+```json
+[
+    {
+        "id": "667836a197850b6ecbe6a6a7",
+        "date": "2024-06-02T00:00:00.000+00:00",
+        "title": "Sample Post Title",
+        "body": "Sample post body text.",
+        "author": {
+            "id": "667217f95617941eef6735ed",
+            "name": "João"
+        },
+        "comments": [
+            {
+                "text": "Sample comment.",
+                "date": "2024-06-03T00:00:00.000+00:00",
+                "author": {
+                    "id": "667217f95617941eef6735ee",
+                    "name": "Maria"
+                }
+            }
+        ]
+    }
+]
+```
+
+### Full Search for Posts
+
+```
+GET /posts/{id}
+```
+
+Perform a full search for posts based on text, and optional date range.
+
+#### Parameters
+
+- `text` (string): Text to search in the post titles and bodies.
+- `minDate` (string, optional): Minimum date for the search (format: yyyy-MM-dd).
+- `maxDate` (string, optional): Maximum date for the search (format: yyyy-MM-dd).
+
+#### Response
+
+- **HTTP Status Code**: 200 OK
+
+```json
+[
+    {
+        "id": "667836a197850b6ecbe6a6a7",
+        "date": "2024-06-02T00:00:00.000+00:00",
+        "title": "Sample Post Title",
+        "body": "Sample post body text.",
+        "author": {
+            "id": "667217f95617941eef6735ed",
+            "name": "João"
+        },
+        "comments": [
+            {
+                "text": "Sample comment.",
+                "date": "2024-06-03T00:00:00.000+00:00",
+                "author": {
+                    "id": "667217f95617941eef6735ee",
+                    "name": "Maria"
+                }
+            }
+        ]
+    }
 ]
 ```
